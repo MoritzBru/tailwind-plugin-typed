@@ -1,7 +1,6 @@
 import plugin from 'tailwindcss/plugin';
-import { arraySum, simpleHash } from './utils/utils';
-import { CSSRuleObject } from 'tailwindcss/types/config';
-import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
+import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
+import type { CSSRuleObject } from 'tailwindcss/types/config';
 
 export type Options = {
   delimiter?: string;
