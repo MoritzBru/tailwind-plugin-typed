@@ -6,3 +6,7 @@ export function simpleHash(str: string) {
   }
   return (hash >>> 0).toString(36).padStart(7, '0');
 };
+
+export function arraySum(arr: number[]) {
+  return arr.reduce((sum, a) => sum + a, 0);
+}

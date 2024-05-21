@@ -8,6 +8,7 @@ export default [
     indent: 2,
     quotes: 'single',
     semi: true,
+    arrowParens: 'always',
   }),
   { languageOptions: { globals: { ...globals.node } } },
   pluginJs.configs.recommended,
