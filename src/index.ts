@@ -1,6 +1,7 @@
 import plugin from 'tailwindcss/plugin';
 import { arraySum, simpleHash } from './utils/utils';
 import { CSSRuleObject } from 'tailwindcss/types/config';
+import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 
 export type Options = {
   delimiter?: string;
@@ -14,13 +15,13 @@ const defaultOptions = {
   delimiter: ';',
   typeLetterDuration: 0.1,
   pauseAfterWordDuration: 2,
-  deleteLetterDuration: 0.08,
+  deleteLetterDuration: 0.05,
   pauseAfterDeletionDuration: 1,
 };
 
 export default plugin.withOptions<Options>(
   (options) =>
-    ({ matchComponents }) => {
+    ({ matchComponents, matchUtilities, theme }) => {
       const optionsWithDefaults = Object.assign(defaultOptions, options);
 
       matchComponents(
@@ -61,19 +62,21 @@ export default plugin.withOptions<Options>(
             }
 
             return {
+              '--tw-typed-caret-content': '"\u200B"',
               '--tw-typed-caret-color': 'currentcolor',
               '--tw-typed-caret-width': '0.2ch',
               '--tw-typed-caret-space': '0.2ch',
               '--tw-typed-caret-duration': '1s',
               '--tw-typed-caret-delay': '0s',
               '--tw-typed-typing-duration': `${duration}s`,
+              '--tw-typed-typing-delay': '0s',
 
               // caret
               '&::after': {
-                content: '"\u200B"',
+                content: 'var(--tw-typed-caret-content)',
                 paddingRight: 'var(--tw-typed-caret-space)',
                 borderRight: 'var(--tw-typed-caret-width) solid var(--tw-typed-caret-color)',
-                animation: 'tw-typed-caret var(--tw-typed-caret-duration) linear var(--tw-typed-caret-delay) infinite forwards',
+                animation: 'tw-typed-caret var(--tw-typed-caret-duration) linear var(--tw-typed-caret-delay) infinite',
               },
 
               // caret keyframes
@@ -87,7 +90,7 @@ export default plugin.withOptions<Options>(
                 content: `"${strings.join(optionsWithDefaults.delimiter)}"`,
                 whiteSpace: 'break-spaces',
                 willChange: 'content',
-                animation: `tw-typed-typing-${hash} var(--tw-typed-typing-duration) linear infinite forwards`,
+                animation: `tw-typed-typing-${hash} var(--tw-typed-typing-duration) linear var(--tw-typed-typing-delay) infinite`,
               },
 
               // typing keyframes
@@ -96,6 +99,37 @@ export default plugin.withOptions<Options>(
               },
             } as CSSRuleObject;
           },
+        },
+      );
+      matchUtilities(
+        {
+          'typed-caret-color': (value) => ({
+            '--tw-typed-caret-color': value,
+          }),
+        },
+        {
+          type: ['color'],
+          values: flattenColorPalette(theme('colors')),
+        },
+      );
+      matchUtilities(
+        {
+          'typed-caret-width': (value) => ({
+            '--tw-typed-caret-width': value,
+          }),
+        },
+        {
+          values: theme('spacing'),
+        },
+      );
+      matchUtilities(
+        {
+          'typed-caret-space': (value) => ({
+            '--tw-typed-caret-space': value,
+          }),
+        },
+        {
+          values: theme('spacing'),
         },
       );
     },
