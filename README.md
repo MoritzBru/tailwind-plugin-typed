@@ -3,12 +3,12 @@
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/moritzbru/tailwind-plugin-typed/npm-publish.yml?style=for-the-badge&logo=github&label=pipeline)](https://github.com/MoritzBru/tailwind-plugin-typed/actions/workflows/npm-publish.yml)
 [![GitHub Tag](https://img.shields.io/github/v/tag/moritzbru/tailwind-plugin-typed?style=for-the-badge&logo=github)](https://github.com/MoritzBru/tailwind-plugin-typed/releases)
 [![NPM Version](https://img.shields.io/npm/v/tailwind-plugin-typed?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
-[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=for-the-badge&logo=tailwindcss)](https://play.tailwindcss.com/xtqVjdnMCZ)
+[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=for-the-badge&logo=tailwindcss)](https://play.tailwindcss.com/RQfh2Is1pa)
 
 A plugin for [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) to generate text typing animations.
 
 > [!TIP]
-> See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/xtqVjdnMCZ)
+> See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/RQfh2Is1pa)
 
 ## Installation
 
@@ -42,6 +42,7 @@ module.exports = {
   plugins: [
     // ... other plugins
     require('tailwind-plugin-typed')({
+      className: 'typed',
       delimiter: ';',
       typeLetterDuration: 0.1,
       pauseAfterWordDuration: 2,
@@ -54,6 +55,7 @@ module.exports = {
 
 | name                         | description                                           | default |
 |------------------------------|-------------------------------------------------------|---------|
+| `className`                  | base class to apply the arbitrary values and utils on | `typed` |
 | `delimiter`                  | character on which strings are split                  | `;`     |
 | `typeLetterDuration`         | duration in seconds for typing one single character   | `0.1`   |
 | `pauseAfterWordDuration`     | pause in seconds after one whole string is typed      | `2`     |
@@ -62,7 +64,7 @@ module.exports = {
 
 ## Usage
 
-This plugin utilises [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) of Tailwind CSS on the `typed` class to generate a typing animation with CSS.
+This plugin utilises [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) of Tailwind CSS on the base class (default `typed`) to generate a typing animation with CSS.
 
 ### single string
 
@@ -97,7 +99,7 @@ This generates a typing and deleting animation of multiple words one after anoth
 One or multiple sentences can be typed as well. Just write an underscore `_` instead of a space as decribed in the [tailwind docs](https://tailwindcss.com/docs/adding-custom-styles#handling-whitespace).
 
 ```html
-<p><span class="typed-[This_can_type_sentences.;And_then_delete_them…]"></span></p>
+<p class="typed-[This_can_type_sentences.;And_then_delete_them…]"></p>
 ```
 
 <picture>

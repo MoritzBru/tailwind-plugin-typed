@@ -3,6 +3,7 @@ import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
 import type { CSSRuleObject } from 'tailwindcss/types/config';
 
 interface Options {
+  className?: string;
   delimiter?: string;
   typeLetterDuration?: number;
   pauseAfterWordDuration?: number;
@@ -10,7 +11,8 @@ interface Options {
   pauseAfterDeletionDuration?: number;
 };
 
-const defaultOptions = {
+const defaultOptions: Required<Options> = {
+  className: 'typed',
   delimiter: ';',
   typeLetterDuration: 0.1,
   pauseAfterWordDuration: 2,
@@ -25,8 +27,8 @@ export default plugin.withOptions<Options>(
 
       matchComponents(
         {
-          typed: (text) => {
-            const hash = simpleHash(text);
+          [optionsWithDefaults.className]: (text) => {
+            const hash = simpleHash(optionsWithDefaults.className + text);
             // TODO: escape delimiter!
             // const strings = text.split(new RegExp(`(?<!\\)${optionsWithDefaults.delimiter}`, 'gu')).map((string) => string.replaceAll(`\\${optionsWithDefaults.delimiter}`, optionsWithDefaults.delimiter));
             const strings = text.split(optionsWithDefaults.delimiter);
