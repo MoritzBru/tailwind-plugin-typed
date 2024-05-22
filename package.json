@@ -31,7 +31,8 @@
     "dev:serve": "vite serve --config dev/vite.config.ts",
     "dev:plugin": "tsup src/index.ts --format esm --watch",
     "build": "tsup src/index.ts --clean --format esm,cjs --dts",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "tailwindcss": ">=3.0.0"
