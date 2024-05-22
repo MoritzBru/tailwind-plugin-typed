@@ -2,7 +2,7 @@ import plugin from 'tailwindcss/plugin';
 import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
 import type { CSSRuleObject } from 'tailwindcss/types/config';
 
-export type Options = {
+interface Options {
   delimiter?: string;
   typeLetterDuration?: number;
   pauseAfterWordDuration?: number;
@@ -28,7 +28,6 @@ export default plugin.withOptions<Options>(
           typed: (text) => {
             const hash = simpleHash(text);
             // TODO: escape delimiter!
-            // eslint-disable-next-line no-useless-escape
             // const strings = text.split(new RegExp(`(?<!\\)${optionsWithDefaults.delimiter}`, 'gu')).map((string) => string.replaceAll(`\\${optionsWithDefaults.delimiter}`, optionsWithDefaults.delimiter));
             const strings = text.split(optionsWithDefaults.delimiter);
             const durations = strings.map((string) => string.length * (optionsWithDefaults.typeLetterDuration + optionsWithDefaults.deleteLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + optionsWithDefaults.pauseAfterDeletionDuration);
