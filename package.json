@@ -1,8 +1,8 @@
 {
   "name": "tailwind-plugin-typed",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
-  "repository": "https://github.com/MoritzBru/tailwind-plugin-typed",
+  "repository": "github:MoritzBru/tailwind-plugin-typed",
   "author": {
     "name": "Moritz Brunnengräber",
     "email": "mail@moritz-brunnengraeber.de"
