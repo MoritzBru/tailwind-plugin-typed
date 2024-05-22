@@ -7,8 +7,7 @@
 
 A plugin for [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) to generate text typing animations.
 
-> [!TIP]
-> See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/RQfh2Is1pa)
+See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/RQfh2Is1pa)
 
 ## Installation
 

@@ -1,13 +1,26 @@
 {
   "name": "tailwind-plugin-typed",
+  "description": "A plugin for Tailwind CSS to generate text typing animations.",
   "version": "0.3.0",
   "type": "module",
-  "repository": "github:MoritzBru/tailwind-plugin-typed",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoritzBru/tailwind-plugin-typed.git"
+  },
   "author": {
     "name": "Moritz Brunnengräber",
     "email": "mail@moritz-brunnengraeber.de"
   },
   "license": "MIT",
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "plugin",
+    "css",
+    "animation",
+    "typing",
+    "typewriter"
+  ],
   "files": [
     "dist"
   ],
