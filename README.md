@@ -73,7 +73,7 @@ This generates an infite looping typing and deleting animation of one word.
 
 ### multiple words
 
-This generates an infite looping typing and deleting animation of multiple words after one another.
+This generates an infite looping typing and deleting animation of multiple words after one another. The default delimiter of strings is `;` but can be configured in the [plugin options](#options).
 
 ```html
 <p>This is <span class="typed-[cool;awesome;superb;amazing]"></span></p>
@@ -83,10 +83,10 @@ This generates an infite looping typing and deleting animation of multiple words
 
 ### multiple sentences
 
-One or multiple sentences can be typed as well. Just write an underscore `_` instead of a space as decribed in the (tailwind docs)[https://tailwindcss.com/docs/adding-custom-styles#handling-whitespace].
+One or multiple sentences can be typed as well. Just write an underscore `_` instead of a space as decribed in the [tailwind docs](https://tailwindcss.com/docs/adding-custom-styles#handling-whitespace).
 
 ```html
-<p><span class="typed-[This_can_type_sentences.;And_then_delte_them…;…to_write_other_senteces.;That's_nice!]"></span></p>
+<p><span class="typed-[This_can_type_sentences.;And_then_delete_them…;…to_write_other_senteces.;That's_nice!]"></span></p>
 ```
 
 <!-- TODO: add gif -->
