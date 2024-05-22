@@ -1,31 +1,36 @@
 {
   "name": "tailwind-plugin-typed",
-  "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "files": [
-    "dist",
-    "types"
-  ],
-  "main": "./dist/index.umd.cjs",
-  "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.cjs"
-    }
-  },
-  "types": "./dist/index.d.ts",
-  "repository": "",
+  "repository": "https://github.com/MoritzBru/tailwind-plugin-typed",
   "author": {
     "name": "Moritz Brunnengräber",
     "email": "mail@moritz-brunnengraeber.de"
   },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
     "dev:serve": "vite serve --config dev/vite.config.ts",
-    "dev:plugin": "vite build --watch",
-    "build": "tsc && vite build",
+    "dev:plugin": "tsup src/index.ts --format esm --watch",
+    "build": "tsup src/index.ts --clean --format esm,cjs --minify --dts",
     "lint": "eslint ."
   },
   "peerDependencies": {
@@ -42,9 +47,9 @@
     "npm-run-all2": "^6.1.2",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
+    "tsup": "^8.0.2",
     "typescript": "^5.2.2",
     "typescript-eslint": "^7.9.0",
-    "vite": "^5.2.0",
-    "vite-plugin-dts": "^3.9.1"
+    "vite": "^5.2.0"
   }
 }
