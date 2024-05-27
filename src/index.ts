@@ -3,7 +3,6 @@ import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
 import type { CSSRuleObject } from 'tailwindcss/types/config';
 
 interface Options {
-  className?: string;
   delimiter?: string;
   typeLetterDuration?: number;
   pauseAfterWordDuration?: number;
@@ -12,7 +11,6 @@ interface Options {
 };
 
 const defaultOptions: Required<Options> = {
-  className: 'typed',
   delimiter: ';',
   typeLetterDuration: 0.1,
   pauseAfterWordDuration: 2,
@@ -29,10 +27,8 @@ export default plugin.withOptions<Options>(
 
       matchComponents(
         {
-          [optionsWithDefaults.className]: (text) => {
-            const hash = simpleHash(optionsWithDefaults.className + text);
-            // TODO: escape delimiter!
-            // const strings = text.split(new RegExp(`(?<!\\)${optionsWithDefaults.delimiter}`, 'gu')).map((string) => string.replaceAll(`\\${optionsWithDefaults.delimiter}`, optionsWithDefaults.delimiter));
+          typed: (text) => {
+            const hash = simpleHash(text);
             const strings = text.split(optionsWithDefaults.delimiter);
             const durations = strings.map((string) => string.length * (optionsWithDefaults.typeLetterDuration + optionsWithDefaults.deleteLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + optionsWithDefaults.pauseAfterDeletionDuration);
             const durationsCummulative = durations.map((_dur, durIdx) => arraySum(durations.slice(0, durIdx + 1)));

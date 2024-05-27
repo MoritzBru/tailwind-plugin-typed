@@ -41,7 +41,6 @@ module.exports = {
   plugins: [
     // ... other plugins
     require('tailwind-plugin-typed')({
-      className: 'typed',
       delimiter: ';',
       typeLetterDuration: 0.1,
       pauseAfterWordDuration: 2,
@@ -54,7 +53,6 @@ module.exports = {
 
 | name                         | description                                           | default |
 |------------------------------|-------------------------------------------------------|---------|
-| `className`                  | base class to apply the arbitrary values and utils on | `typed` |
 | `delimiter`                  | character on which strings are split                  | `;`     |
 | `typeLetterDuration`         | duration in seconds for typing one single character   | `0.1`   |
 | `pauseAfterWordDuration`     | pause in seconds after one whole string is typed      | `2`     |
@@ -63,7 +61,7 @@ module.exports = {
 
 ## 💻 Usage
 
-This plugin utilises [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) of Tailwind CSS on the base class (default `typed`) to generate a typing animation with CSS.
+This plugin utilises [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) of Tailwind CSS on the base class `typed` to generate a typing animation with CSS.
 
 ### caret
 
