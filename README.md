@@ -9,7 +9,7 @@ A plugin for [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) to gener
 
 See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/RQfh2Is1pa)
 
-## Installation
+## 📦 Installation
 
 Install the package with your preferred package manager (e.g. `npm`)
 
@@ -30,7 +30,7 @@ module.exports = {
 }
 ```
 
-## Options
+## 🔧 Options
 
 This plugin exposes some optional options that can be passed in the tailwind configuration
 
@@ -61,16 +61,30 @@ module.exports = {
 | `deleteLetterDuration`       | duration in seconds for deleting one single character | `0.05`  |
 | `pauseAfterDeletionDuration` | pause in seconds after one whole string is deleted    | `1`     |
 
-## Usage
+## 💻 Usage
 
 This plugin utilises [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) of Tailwind CSS on the base class (default `typed`) to generate a typing animation with CSS.
 
-### single string
+### caret
 
-This generates an infite looping typing and deleting animation of one string.
+This generates a blinking caret in an `::after` pseudo element.
 
 ```html
-<p>Hello <span class="typed-[world]"></span></p>
+<p class="typed-caret">Typed</p>
+```
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/caret-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="/.github/assets/caret-light.gif">
+  <img alt="one word typed" src="/.github/assets/caret-light.gif">
+</picture>
+
+### single string
+
+This generates an infite looping typing and deleting animation of the string _world_.
+
+```html
+<p>Hello <span class="typed-[world] typed-caret"></span></p>
 ```
 
 <picture>
@@ -81,10 +95,10 @@ This generates an infite looping typing and deleting animation of one string.
 
 ### multiple strings
 
-This generates a typing and deleting animation of multiple words one after another. The default delimiter of strings is `;` but can be configured in the [plugin options](#options).
+This generates a typing and deleting animation of multiple words one after another. The default delimiter of strings is `;` but can be configured in the [plugin options](#-options).
 
 ```html
-<p>This is <span class="typed-[cool;awesome;superb]"></span></p>
+<p>This is <span class="typed-[cool;awesome;superb] typed-caret"></span></p>
 ```
 
 <picture>
@@ -98,7 +112,7 @@ This generates a typing and deleting animation of multiple words one after anoth
 One or multiple sentences can be typed as well. Just write an underscore `_` instead of a space as decribed in the [tailwind docs](https://tailwindcss.com/docs/adding-custom-styles#handling-whitespace).
 
 ```html
-<p class="typed-[This_can_type_sentences.;And_then_delete_them…]"></p>
+<p class="typed-[This_can_type_sentences.;And_then_delete_them…] typed-caret"></p>
 ```
 
 <picture>
@@ -112,16 +126,16 @@ One or multiple sentences can be typed as well. Just write an underscore `_` ins
 There are utilities `typed-caret-color`, `typed-caret-width` and `typed-caret-space` to adjust the caret.
 
 ```html
-<p>Caret <span class="typed-[color;width;space] typed-caret-color-emerald-400 dark:typed-caret-color-emerald-600 typed-caret-width-4 typed-caret-space-2"></span></p>
+<p>Caret <span class="typed-[color;width;space] typed-caret typed-caret-color-emerald-400 dark:typed-caret-color-emerald-600 typed-caret-width-4 typed-caret-space-2"></span></p>
 ```
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/caret-dark.gif">
-  <source media="(prefers-color-scheme: light)" srcset="/.github/assets/caret-light.gif">
-  <img alt="one word typed" src="/.github/assets/caret-light.gif">
+  <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/caret-adjustment-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="/.github/assets/caret-adjustment-light.gif">
+  <img alt="one word typed" src="/.github/assets/caret-adjustment-light.gif">
 </picture>
 
-## Thanks
+## 💕 Thanks
 
 This project is heavily inspired by other awesome projects like:
 

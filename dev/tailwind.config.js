@@ -8,6 +8,8 @@ export default {
   ],
   darkMode: 'media',
   plugins: [
-    typedPlugin,
+    typedPlugin({
+      pauseAfterWordDuration: 1,
+    }),
   ],
 };

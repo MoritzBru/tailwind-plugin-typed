@@ -20,9 +20,11 @@ const defaultOptions: Required<Options> = {
   pauseAfterDeletionDuration: 1,
 };
 
+const ZERO_WIDTH_SPACE = '\u200B';
+
 export default plugin.withOptions<Options>(
   (options) =>
-    ({ matchComponents, matchUtilities, theme }) => {
+    ({ addComponents, matchComponents, matchUtilities, theme }) => {
       const optionsWithDefaults = Object.assign(defaultOptions, options);
 
       matchComponents(
@@ -53,7 +55,7 @@ export default plugin.withOptions<Options>(
                     const durationType = durationsCummulative[stringIdx] - optionsWithDefaults.pauseAfterDeletionDuration + optionsWithDefaults.typeLetterDuration;
                     const offsetTrick = -(Number(!isLastString) * 0.0001);
                     const durationDelete = durationsCummulative[stringIdx] + offsetTrick;
-                    const pauseKeyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: '""' }];
+                    const pauseKeyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${ZERO_WIDTH_SPACE}"` }];
                     keyframes.push(pauseKeyframe);
                   }
                 });
@@ -62,30 +64,9 @@ export default plugin.withOptions<Options>(
             }
 
             return {
-              '--tw-typed-caret-content': '"\u200B"',
-              '--tw-typed-caret-color': 'currentcolor',
-              '--tw-typed-caret-width': '0.2ch',
-              '--tw-typed-caret-space': '0.2ch',
-              '--tw-typed-caret-duration': '1s',
-              '--tw-typed-caret-delay': '0s',
               '--tw-typed-typing-duration': `${duration}s`,
               '--tw-typed-typing-delay': '0s',
 
-              // caret
-              '&::after': {
-                content: 'var(--tw-typed-caret-content)',
-                paddingRight: 'var(--tw-typed-caret-space)',
-                borderRight: 'var(--tw-typed-caret-width) solid var(--tw-typed-caret-color)',
-                animation: 'tw-typed-caret var(--tw-typed-caret-duration) linear var(--tw-typed-caret-delay) infinite',
-              },
-
-              // caret keyframes
-              '@keyframes tw-typed-caret': {
-                '0%, 20%, 80%, 100%': { opacity: '1' },
-                '30%, 70%': { opacity: '0' },
-              },
-
-              // typing
               '&::before': {
                 content: `"${strings.join(optionsWithDefaults.delimiter)}"`,
                 whiteSpace: 'break-spaces',
@@ -93,11 +74,34 @@ export default plugin.withOptions<Options>(
                 animation: `tw-typed-typing-${hash} var(--tw-typed-typing-duration) linear var(--tw-typed-typing-delay) infinite`,
               },
 
-              // typing keyframes
               [`@keyframes tw-typed-typing-${hash}`]: {
                 ...getTypingKeyframeStep(),
               },
             } as CSSRuleObject;
+          },
+        },
+      );
+      addComponents(
+        {
+          '.typed-caret': {
+            '--tw-typed-caret-content': `"${ZERO_WIDTH_SPACE}"`,
+            '--tw-typed-caret-color': 'currentcolor',
+            '--tw-typed-caret-width': '0.2ch',
+            '--tw-typed-caret-space': '0.2ch',
+            '--tw-typed-caret-duration': '1s',
+            '--tw-typed-caret-delay': '0s',
+
+            '&::after': {
+              content: 'var(--tw-typed-caret-content)',
+              paddingRight: 'var(--tw-typed-caret-space)',
+              borderRight: 'var(--tw-typed-caret-width) solid var(--tw-typed-caret-color)',
+              animation: 'tw-typed-caret var(--tw-typed-caret-duration) linear var(--tw-typed-caret-delay) infinite',
+            },
+
+            '@keyframes tw-typed-caret': {
+              '0%, 20%, 80%, 100%': { opacity: '1' },
+              '30%, 70%': { opacity: '0' },
+            },
           },
         },
       );
