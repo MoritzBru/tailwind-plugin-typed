@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [unreleased]
 
+¯\\_(ツ)_/¯
+
+## [0.5.0]
+
 ### Added
 
 - Changelog
@@ -34,7 +38,8 @@ See [v0.1.0...v0.2.0](https://github.com/MoritzBru/tailwind-plugin-typed/compare
 
 Initial release
 
-[unreleased]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.4.1...HEAD
+[unreleased]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.3.0...v0.4.1
 [0.4.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.2.1...v0.3.0
