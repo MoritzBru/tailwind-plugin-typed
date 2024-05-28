@@ -3,11 +3,11 @@
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/moritzbru/tailwind-plugin-typed/npm-publish.yml?style=for-the-badge&logo=github&label=pipeline)](https://github.com/MoritzBru/tailwind-plugin-typed/actions/workflows/npm-publish.yml)
 [![GitHub Tag](https://img.shields.io/github/v/tag/moritzbru/tailwind-plugin-typed?style=for-the-badge&logo=github)](https://github.com/MoritzBru/tailwind-plugin-typed/releases)
 [![NPM Version](https://img.shields.io/npm/v/tailwind-plugin-typed?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
-[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=for-the-badge&logo=tailwindcss)](https://play.tailwindcss.com/5PY83nx8BG)
+[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=for-the-badge&logo=tailwindcss)](https://play.tailwindcss.com/PiCmGMfkag)
 
 A plugin for [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) to generate text typing animations.
 
-See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/5PY83nx8BG)
+See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/PiCmGMfkag)
 
 ## 📦 Installation
 
@@ -74,7 +74,7 @@ This generates a blinking caret in an `::after` pseudo element.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/caret-dark.gif">
   <source media="(prefers-color-scheme: light)" srcset="/.github/assets/caret-light.gif">
-  <img alt="one word typed" src="/.github/assets/caret-light.gif">
+  <img alt="caret typed" src="/.github/assets/caret-light.gif">
 </picture>
 
 ### single string
@@ -88,7 +88,7 @@ This generates an infite looping typing and deleting animation of the string _wo
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/single-dark.gif">
   <source media="(prefers-color-scheme: light)" srcset="/.github/assets/single-light.gif">
-  <img alt="one word typed" src="/.github/assets/single-light.gif">
+  <img alt="one string typed" src="/.github/assets/single-light.gif">
 </picture>
 
 ### multiple strings
@@ -102,7 +102,7 @@ This generates a typing and deleting animation of multiple words one after anoth
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/multiple-dark.gif">
   <source media="(prefers-color-scheme: light)" srcset="/.github/assets/multiple-light.gif">
-  <img alt="one word typed" src="/.github/assets/multiple-light.gif">
+  <img alt="multiple strings typed" src="/.github/assets/multiple-light.gif">
 </picture>
 
 ### sentences
@@ -116,7 +116,7 @@ One or multiple sentences can be typed as well. Just write an underscore `_` ins
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/sentence-dark.gif">
   <source media="(prefers-color-scheme: light)" srcset="/.github/assets/sentence-light.gif">
-  <img alt="one word typed" src="/.github/assets/sentence-light.gif">
+  <img alt="senteces typed" src="/.github/assets/sentence-light.gif">
 </picture>
 
 ### adjust the caret
@@ -130,7 +130,22 @@ There are utilities `typed-caret-color`, `typed-caret-width` and `typed-caret-sp
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/caret-adjustment-dark.gif">
   <source media="(prefers-color-scheme: light)" srcset="/.github/assets/caret-adjustment-light.gif">
-  <img alt="one word typed" src="/.github/assets/caret-adjustment-light.gif">
+  <img alt="adjusted caret typed" src="/.github/assets/caret-adjustment-light.gif">
+</picture>
+
+### escaping the delimiter and special chars
+
+The delimiter can be escaped with a backslash `\` in front of it. Then it will be typed out normally.
+If other [reserved characters](https://tailwindcss.com/docs/adding-custom-styles#resolving-ambiguities) (e.g. colon `:`) should be typed, the whole arbitrary value can be wrapped in backticks `` ` `` which will be removed automatically
+
+```html
+<p class="typed-[`semi:_true\;;semi:_false\;`] typed-caret"></p>
+```
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/.github/assets/escape-special-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="/.github/assets/escape-special-light.gif">
+  <img alt="escaped special chars typed" src="/.github/assets/escape-special-light.gif">
 </picture>
 
 ## 💕 Thanks

@@ -29,7 +29,12 @@ export default plugin.withOptions<Options>(
         {
           typed: (text) => {
             const hash = simpleHash(text);
-            const strings = text.split(optionsWithDefaults.delimiter);
+            const strings = text
+              .replace(/^`/, '') // if text starts with a backtick ` remove it
+              .replace(/`$/, '') // if text ends with a backtick ` remove it
+              .split(new RegExp(`(?<!\\\\)${optionsWithDefaults.delimiter}`)) // split on not escaped delimiter
+              .map((string) => string.replaceAll(`\\${optionsWithDefaults.delimiter}`, optionsWithDefaults.delimiter)); // replace escaped delimiter with plain delimiter
+
             const durations = strings.map((string) => string.length * (optionsWithDefaults.typeLetterDuration + optionsWithDefaults.deleteLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + optionsWithDefaults.pauseAfterDeletionDuration);
             const durationsCummulative = durations.map((_dur, durIdx) => arraySum(durations.slice(0, durIdx + 1)));
             const duration = arraySum(durations);

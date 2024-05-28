@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
-¯\\_(ツ)_/¯
+### Added
+
+- Possibility to escape the delimiter
+- Possibility to wrap the string in backticks to type _reserved characters_
 
 ## [0.5.0] - 2024-05-27
 
