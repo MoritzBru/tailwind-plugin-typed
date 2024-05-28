@@ -45,7 +45,9 @@
     "dev:plugin": "tsup src/index.ts --format esm --watch",
     "build": "tsup src/index.ts --clean --format esm,cjs --dts",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "changelog": "changelog --format markdownlint --release $(npm pkg get version | xargs) --create",
+    "version": "npm run changelog && git add CHANGELOG.md"
   },
   "peerDependencies": {
     "tailwindcss": ">=3.0.0"
@@ -57,12 +59,13 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.3.0",
     "globals": "^15.3.0",
+    "keep-a-changelog": "^2.5.3",
     "npm-run-all2": "^6.2.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^8.0.0-alpha.14",
+    "typescript-eslint": "^8.0.0-alpha.20",
     "vite": "^5.2.11"
   }
 }
