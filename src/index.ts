@@ -80,7 +80,7 @@ export default plugin.withOptions<Options>(
               [`@keyframes tw-typed-typing-${hash}`]: {
                 ...getTypingKeyframeStep(),
               },
-            } as CSSRuleObject;
+            };
           },
         },
       );
