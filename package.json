@@ -50,14 +50,14 @@
     "version": "npm run changelog && git add CHANGELOG.md"
   },
   "peerDependencies": {
-    "tailwindcss": ">=3.0.0"
+    "tailwindcss": "^3.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.3.0",
+    "@eslint/js": "^9.4.0",
     "@stylistic/eslint-plugin": "^2.1.0",
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.13.0",
     "autoprefixer": "^10.4.19",
-    "eslint": "^9.3.0",
+    "eslint": "^9.4.0",
     "globals": "^15.3.0",
     "keep-a-changelog": "^2.5.3",
     "npm-run-all2": "^6.2.0",
@@ -65,7 +65,7 @@
     "tailwindcss": "^3.4.3",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^8.0.0-alpha.20",
-    "vite": "^5.2.11"
+    "typescript-eslint": "^8.0.0-alpha.24",
+    "vite": "^5.2.12"
   }
 }
