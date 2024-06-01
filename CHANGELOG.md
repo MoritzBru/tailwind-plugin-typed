@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
+### Added
+
+- `alt` text in `content`
+- a11y documentation
+
 ## [0.6.0] - 2024-05-28
 
 ### Added
