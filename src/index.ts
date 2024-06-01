@@ -29,11 +29,13 @@ export default plugin.withOptions<Options>(
         {
           typed: (text) => {
             const hash = simpleHash(text);
+
             const strings = text
               .replace(/^`/, '') // if text starts with a backtick ` remove it
               .replace(/`$/, '') // if text ends with a backtick ` remove it
               .split(new RegExp(`(?<!\\\\)${optionsWithDefaults.delimiter}`)) // split on not escaped delimiter
               .map((string) => string.replaceAll(`\\${optionsWithDefaults.delimiter}`, optionsWithDefaults.delimiter)); // replace escaped delimiter with plain delimiter
+            const altString = strings.join(`${optionsWithDefaults.delimiter} `);
 
             const durations = strings.map((string) => string.length * (optionsWithDefaults.typeLetterDuration + optionsWithDefaults.deleteLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + optionsWithDefaults.pauseAfterDeletionDuration);
             const durationsCummulative = durations.map((_dur, durIdx) => arraySum(durations.slice(0, durIdx + 1)));
@@ -48,7 +50,7 @@ export default plugin.withOptions<Options>(
 
                   const durationType = (durationsCummulative[stringIdx - 1] || 0) + (charIdx * optionsWithDefaults.typeLetterDuration);
                   const durationDelete = (durationsCummulative[stringIdx - 1] || 0) + (string.length * optionsWithDefaults.typeLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + ((string.length - charIdx) * optionsWithDefaults.deleteLetterDuration);
-                  const keyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${string.slice(0, charIdx + 1)}"` }];
+                  const keyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${string.slice(0, charIdx + 1)}" / "${altString}"` }];
                   keyframes.push(keyframe);
 
                   // insert pause after last char of string
@@ -56,7 +58,7 @@ export default plugin.withOptions<Options>(
                     const durationType = durationsCummulative[stringIdx] - optionsWithDefaults.pauseAfterDeletionDuration + optionsWithDefaults.typeLetterDuration;
                     const offsetTrick = -(Number(!isLastString) * 0.0001);
                     const durationDelete = durationsCummulative[stringIdx] + offsetTrick;
-                    const pauseKeyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${ZERO_WIDTH_SPACE}"` }];
+                    const pauseKeyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${ZERO_WIDTH_SPACE}" / "${altString}"` }];
                     keyframes.push(pauseKeyframe);
                   }
                 });
@@ -69,7 +71,7 @@ export default plugin.withOptions<Options>(
               '--tw-typed-typing-delay': '0s',
 
               '&::before': {
-                content: `"${strings.join(optionsWithDefaults.delimiter)}"`,
+                content: `"${altString}"`,
                 whiteSpace: 'break-spaces',
                 willChange: 'content',
                 animation: `tw-typed-typing-${hash} var(--tw-typed-typing-duration) linear var(--tw-typed-typing-delay) infinite`,
