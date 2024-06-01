@@ -30,7 +30,7 @@ module.exports = {
 }
 ```
 
-## 🔧 Options
+## ⚙️ Options
 
 This plugin exposes some optional options that can be passed in the tailwind configuration
 
@@ -147,6 +147,22 @@ If other [reserved characters](https://tailwindcss.com/docs/adding-custom-styles
   <source media="(prefers-color-scheme: light)" srcset="/.github/assets/escape-special-light.gif">
   <img alt="escaped special chars typed" src="/.github/assets/escape-special-light.gif">
 </picture>
+
+## ♿️ Notes on a11y
+
+This plugin adds [alternative text to the `content`](https://developer.mozilla.org/en-US/docs/Web/CSS/content#alternative_text) of the pseudo element upon typing so that screen readers can _hopefully_ read the whole text that is being typed at all times and are not affected by the animation.
+
+Tailwind itself provides modfiers to adjust for the [users preference regarding `reduced motion`](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-reduced-motion).
+
+This example will render a typing animation of the string _no preference_ in case the user does not specify a preferences for reduced motion. In case the users preferes to have an experience with reduced motion the static text _reduce_ will be rendered.
+
+```html
+<p>
+  prefers-reduced-motion:
+  <span class="motion-safe:typed-[no_preference] motion-safe:typed-caret"></span>
+  <span class="motion-safe:hidden">reduce</span>
+</p>
+```
 
 ## 💕 Thanks
 
