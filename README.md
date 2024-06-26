@@ -1,9 +1,9 @@
 # tailwind-plugin-typed
 
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/moritzbru/tailwind-plugin-typed/npm-publish.yml?style=for-the-badge&logo=github&label=pipeline)](https://github.com/MoritzBru/tailwind-plugin-typed/actions/workflows/npm-publish.yml)
-[![GitHub Tag](https://img.shields.io/github/v/tag/moritzbru/tailwind-plugin-typed?style=for-the-badge&logo=github)](https://github.com/MoritzBru/tailwind-plugin-typed/releases)
-[![NPM Version](https://img.shields.io/npm/v/tailwind-plugin-typed?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
-[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=for-the-badge&logo=tailwindcss)](https://play.tailwindcss.com/PiCmGMfkag)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/moritzbru/tailwind-plugin-typed/npm-publish.yml?style=flat-square&logo=github&label=pipeline)](https://github.com/MoritzBru/tailwind-plugin-typed/actions/workflows/npm-publish.yml)
+[![GitHub Tag](https://img.shields.io/github/v/tag/moritzbru/tailwind-plugin-typed?style=flat-square&logo=github)](https://github.com/MoritzBru/tailwind-plugin-typed/releases)
+[![NPM Version](https://img.shields.io/npm/v/tailwind-plugin-typed?style=flat-square&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
+[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=flat-square&logo=tailwindcss)](https://play.tailwindcss.com/PiCmGMfkag)
 
 A plugin for [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) to generate text typing animations.
 
