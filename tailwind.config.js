@@ -1,10 +1,9 @@
-import { resolve } from 'node:path';
-import typedPlugin from '../dist/index.js';
+import typedPlugin from './dist/index.js';
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    resolve(__dirname, '*.html'),
+    './index.html',
   ],
   darkMode: 'media',
   plugins: [

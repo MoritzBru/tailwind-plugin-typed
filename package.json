@@ -40,10 +40,8 @@
     }
   },
   "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
-    "dev:serve": "vite serve --config dev/vite.config.ts",
-    "dev:plugin": "tsup src/index.ts --format esm --watch",
-    "build": "tsup src/index.ts --clean --format esm,cjs --dts",
+    "dev": "vite build --watch & vite serve .",
+    "build": "vite build",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
     "changelog": "changelog --format markdownlint --release $(npm pkg get version | xargs) --create",
@@ -53,19 +51,20 @@
     "tailwindcss": "^3.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.4.0",
-    "@stylistic/eslint-plugin": "^2.1.0",
-    "@types/node": "^20.13.0",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^9.4.0",
-    "globals": "^15.3.0",
+    "@eslint/js": "^9.18.0",
+    "@stylistic/eslint-plugin": "^2.12.1",
+    "@types/node": "^22.10.5",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
     "keep-a-changelog": "^2.5.3",
-    "npm-run-all2": "^6.2.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^8.0.0-alpha.24",
-    "vite": "^5.2.12"
+    "npm-run-all2": "^7.0.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.19.1",
+    "vite": "^6.0.7",
+    "vite-plugin-dts": "^4.5.0"
   }
 }
