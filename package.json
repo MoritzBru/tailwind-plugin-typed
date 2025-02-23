@@ -1,7 +1,7 @@
 {
   "name": "tailwind-plugin-typed",
   "description": "A plugin for Tailwind CSS to generate text typing animations.",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "type": "module",
   "repository": {
     "type": "git",
