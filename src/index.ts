@@ -1,6 +1,10 @@
+import type {} from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
-import type { CSSRuleObject } from 'tailwindcss/types/config';
+
+interface CssInJs {
+  [key: string]: string | string[] | CssInJs | CssInJs[];
+}
 
 interface Options {
   delimiter?: string;
@@ -42,7 +46,7 @@ export default plugin.withOptions<Options>(
             const duration = arraySum(durations);
 
             function getTypingKeyframeStep() {
-              const keyframes: [string, CSSRuleObject][] = [];
+              const keyframes: [string, CssInJs][] = [];
               strings.forEach((string, stringIdx) => {
                 [...string].forEach((_char, charIdx) => {
                   const isLastString = stringIdx + 1 === strings.length;
@@ -50,7 +54,7 @@ export default plugin.withOptions<Options>(
 
                   const durationType = (durationsCummulative[stringIdx - 1] || 0) + (charIdx * optionsWithDefaults.typeLetterDuration);
                   const durationDelete = (durationsCummulative[stringIdx - 1] || 0) + (string.length * optionsWithDefaults.typeLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + ((string.length - charIdx) * optionsWithDefaults.deleteLetterDuration);
-                  const keyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${string.slice(0, charIdx + 1)}" / "${altString}"` }];
+                  const keyframe: [string, CssInJs] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${string.slice(0, charIdx + 1)}" / "${altString}"` }];
                   keyframes.push(keyframe);
 
                   // insert pause after last char of string
@@ -58,13 +62,21 @@ export default plugin.withOptions<Options>(
                     const durationType = durationsCummulative[stringIdx] - optionsWithDefaults.pauseAfterDeletionDuration + optionsWithDefaults.typeLetterDuration;
                     const offsetTrick = -(Number(!isLastString) * 0.0001);
                     const durationDelete = durationsCummulative[stringIdx] + offsetTrick;
-                    const pauseKeyframe: [string, CSSRuleObject] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${ZERO_WIDTH_SPACE}" / "${altString}"` }];
+                    const pauseKeyframe: [string, CssInJs] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${ZERO_WIDTH_SPACE}" / "${altString}"` }];
                     keyframes.push(pauseKeyframe);
                   }
                 });
               });
               return Object.fromEntries(keyframes);
             }
+
+            // Define keyframes separately and add them to the root
+            const keyframes = {
+              [`@keyframes tw-typed-typing-${hash}`]: {
+                ...getTypingKeyframeStep(),
+              },
+            };
+            addComponents(keyframes);
 
             return {
               '--tw-typed-typing-duration': `${duration}s`,
@@ -75,10 +87,6 @@ export default plugin.withOptions<Options>(
                 whiteSpace: 'break-spaces',
                 willChange: 'content',
                 animation: `tw-typed-typing-${hash} var(--tw-typed-typing-duration) linear var(--tw-typed-typing-delay) infinite`,
-              },
-
-              [`@keyframes tw-typed-typing-${hash}`]: {
-                ...getTypingKeyframeStep(),
               },
             };
           },
@@ -100,11 +108,10 @@ export default plugin.withOptions<Options>(
               borderRight: 'var(--tw-typed-caret-width) solid var(--tw-typed-caret-color)',
               animation: 'tw-typed-caret var(--tw-typed-caret-duration) linear var(--tw-typed-caret-delay) infinite',
             },
-
-            '@keyframes tw-typed-caret': {
-              '0%, 20%, 80%, 100%': { opacity: '1' },
-              '30%, 70%': { opacity: '0' },
-            },
+          },
+          '@keyframes tw-typed-caret': {
+            '0%, 20%, 80%, 100%': { opacity: '1' },
+            '30%, 70%': { opacity: '0' },
           },
         },
       );
@@ -140,4 +147,4 @@ export default plugin.withOptions<Options>(
         },
       );
     },
-);
+) as ReturnType<typeof plugin.withOptions<Options>>; // TODO: Fix workaround once fixed upstream. See https://github.com/tailwindlabs/tailwindcss/issues/15844

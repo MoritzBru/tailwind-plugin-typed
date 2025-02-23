@@ -1,4 +1,6 @@
-import type { RecursiveKeyValuePair, KeyValuePair } from 'tailwindcss/types/config';
+interface Colors {
+  [key: string | number]: string | Colors;
+}
 
 // https://gist.github.com/jlevy/c246006675becc446360a798e2b2d781
 export function simpleHash(str: string) {
@@ -15,7 +17,7 @@ export function arraySum(arr: number[]) {
 }
 
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/util/flattenColorPalette.js
-export function flattenColorPalette(colors: RecursiveKeyValuePair = {}): KeyValuePair {
+export function flattenColorPalette(colors: Colors): Record<string, string> {
   return Object.assign({}, ...Object.entries(colors).flatMap(([color, values]) => typeof values == 'object'
     ? Object.entries(flattenColorPalette(values)).map(([number, hex]) => ({
         [color + (number === 'DEFAULT' ? '' : `-${number}`)]: hex,
