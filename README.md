@@ -3,11 +3,14 @@
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/moritzbru/tailwind-plugin-typed/npm-publish.yml?style=flat-square&logo=github&label=pipeline)](https://github.com/MoritzBru/tailwind-plugin-typed/actions/workflows/npm-publish.yml)
 [![GitHub Tag](https://img.shields.io/github/v/tag/moritzbru/tailwind-plugin-typed?style=flat-square&logo=github)](https://github.com/MoritzBru/tailwind-plugin-typed/releases)
 [![NPM Version](https://img.shields.io/npm/v/tailwind-plugin-typed?style=flat-square&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
-[![Tailwind Play](https://img.shields.io/badge/tailwind_play-live_demo-%2338bdf8?style=flat-square&logo=tailwindcss)](https://play.tailwindcss.com/PiCmGMfkag)
+[![Tailwind Play](https://img.shields.io/badge/tailwind_play-v3_demo-%2338bdf8?style=flat-square&logo=tailwindcss)](https://play.tailwindcss.com/PiCmGMfkag)
+[![Tailwind Play](https://img.shields.io/badge/tailwind_play-v4_demo-%2338bdf8?style=flat-square&logo=tailwindcss)](https://play.tailwindcss.com/8DsYJjZUKJ)
 
 A plugin for [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) to generate text typing animations.
 
-See it in action in the [**live demo** on Tailwind Play](https://play.tailwindcss.com/PiCmGMfkag)
+## Live Demo
+
+See it in action in the Tailwind Playground for [Tailwind CSS v3.x](https://play.tailwindcss.com/PiCmGMfkag) and for [Tailwind CSS v4.x](https://play.tailwindcss.com/8DsYJjZUKJ)
 
 ## 📦 Installation
 
@@ -17,22 +20,45 @@ Install the package with your preferred package manager (e.g. `npm`)
 npm i -D tailwind-plugin-typed
 ```
 
-Add the plugin to your tailwind configuration (e.g. `tailwind.config.js`)
+## 🔧 Configuration
+
+### For Tailwind CSS v3.x
+
+Add the plugin to your [configuration](https://v3.tailwindcss.com/docs/configuration)
 
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // ... other tailwind config
   plugins: [
-    // ... other plugins
     require('tailwind-plugin-typed'),
+    // ... other plugins
   ],
 }
+```
+
+### For Tailwind CSS v4.x
+
+Add the plugin to your CSS via the [`@plugin` directive](https://tailwindcss.com/docs/functions-and-directives#plugin-directive)
+
+```css
+@import "tailwindcss";
+@plugin "tailwind-plugin-typed";
 ```
 
 ## ⚙️ Options
 
 This plugin exposes some optional options that can be passed in the tailwind configuration
+
+| name                         | description                                           | default |
+|------------------------------|-------------------------------------------------------|---------|
+| `delimiter`                  | character on which strings are split                  | `;`     |
+| `typeLetterDuration`         | duration in seconds for typing one single character   | `0.1`   |
+| `pauseAfterWordDuration`     | pause in seconds after one whole string is typed      | `2`     |
+| `deleteLetterDuration`       | duration in seconds for deleting one single character | `0.05`  |
+| `pauseAfterDeletionDuration` | pause in seconds after one whole string is deleted    | `1`     |
+
+### Exmaple for Tailwind CSS v3.x
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -51,13 +77,19 @@ module.exports = {
 }
 ```
 
-| name                         | description                                           | default |
-|------------------------------|-------------------------------------------------------|---------|
-| `delimiter`                  | character on which strings are split                  | `;`     |
-| `typeLetterDuration`         | duration in seconds for typing one single character   | `0.1`   |
-| `pauseAfterWordDuration`     | pause in seconds after one whole string is typed      | `2`     |
-| `deleteLetterDuration`       | duration in seconds for deleting one single character | `0.05`  |
-| `pauseAfterDeletionDuration` | pause in seconds after one whole string is deleted    | `1`     |
+### Example for Tailwind CSS v4.x
+
+```css
+@import "tailwindcss";
+@plugin "tailwind-plugin-typed" {
+  delimiter: ';',
+  typeLetterDuration: 0.1,
+  pauseAfterWordDuration: 2,
+  deleteLetterDuration: 0.05,
+  pauseAfterDeletionDuration: 1,
+}
+```
+
 
 ## 💻 Usage
 
