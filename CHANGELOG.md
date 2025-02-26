@@ -6,13 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
-### Fixed
-
-- Plugin works again with Tailwind 3 and Tailwind 4
+## [1.1.0] - 2025-02-26
 
 ### Changed
 
 - Optimized decimal values of generated keyframes
+
+### Fixed
+
+- Plugin works again with Tailwind 3 and Tailwind 4
 
 ## [1.0.0] - 2025-02-23
 
@@ -70,7 +72,8 @@ See [v0.1.0...v0.2.0](https://github.com/MoritzBru/tailwind-plugin-typed/compare
 
 Initial release
 
-[Unreleased]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.8.0...v1.0.0
 [0.8.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/MoritzBru/tailwind-plugin-typed/compare/v0.6.0...v0.7.0
