@@ -1,5 +1,5 @@
 import plugin from 'tailwindcss/plugin';
-import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
+import { arraySum, simpleHash, flattenColorPalette, getPercentage } from './utils/utils';
 
 interface CssInJs {
   [key: string]: string | string[] | CssInJs | CssInJs[];
@@ -45,35 +45,32 @@ export default plugin.withOptions<Options>(
             const durationsCummulative = durations.map((_dur, durIdx) => arraySum(durations.slice(0, durIdx + 1)));
             const duration = arraySum(durations);
 
-            function getTypingKeyframeStep() {
-              const keyframes: [string, CssInJs][] = [];
-              strings.forEach((string, stringIdx) => {
-                [...string].forEach((_char, charIdx) => {
-                  const isLastString = stringIdx + 1 === strings.length;
-                  const isLastChar = charIdx + 1 === string.length;
+            const keyframesArray: [string, CssInJs][] = [];
+            strings.forEach((string, stringIdx) => {
+              [...string].forEach((_char, charIdx) => {
+                const isLastString = stringIdx + 1 === strings.length;
+                const isLastChar = charIdx + 1 === string.length;
 
-                  const durationType = (durationsCummulative[stringIdx - 1] || 0) + (charIdx * optionsWithDefaults.typeLetterDuration);
-                  const durationDelete = (durationsCummulative[stringIdx - 1] || 0) + (string.length * optionsWithDefaults.typeLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + ((string.length - charIdx) * optionsWithDefaults.deleteLetterDuration);
-                  const keyframe: [string, CssInJs] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${string.slice(0, charIdx + 1)}" / "${altString}"` }];
-                  keyframes.push(keyframe);
+                const durationType = (durationsCummulative[stringIdx - 1] || 0) + (charIdx * optionsWithDefaults.typeLetterDuration);
+                const durationDelete = (durationsCummulative[stringIdx - 1] || 0) + (string.length * optionsWithDefaults.typeLetterDuration) + optionsWithDefaults.pauseAfterWordDuration + ((string.length - charIdx) * optionsWithDefaults.deleteLetterDuration);
+                const keyframe: [string, CssInJs] = [[getPercentage(durationType, duration), getPercentage(durationDelete, duration)].join(), { content: `"${string.slice(0, charIdx + 1)}" / "${altString}"` }];
+                keyframesArray.push(keyframe);
 
-                  // insert pause after last char of string
-                  if (isLastChar) {
-                    const durationType = durationsCummulative[stringIdx] - optionsWithDefaults.pauseAfterDeletionDuration + optionsWithDefaults.typeLetterDuration;
-                    const offsetTrick = -(Number(!isLastString) * 0.0001);
-                    const durationDelete = durationsCummulative[stringIdx] + offsetTrick;
-                    const pauseKeyframe: [string, CssInJs] = [`${durationType / duration * 100}%, ${durationDelete / duration * 100}%`, { content: `"${ZERO_WIDTH_SPACE}" / "${altString}"` }];
-                    keyframes.push(pauseKeyframe);
-                  }
-                });
+                // insert pause after last char of string
+                if (isLastChar) {
+                  const durationType = durationsCummulative[stringIdx] - optionsWithDefaults.pauseAfterDeletionDuration + optionsWithDefaults.typeLetterDuration;
+                  const offsetTrick = -(Number(!isLastString) * 0.0001);
+                  const durationDelete = durationsCummulative[stringIdx] + offsetTrick;
+                  const pauseKeyframe: [string, CssInJs] = [[getPercentage(durationType, duration), getPercentage(durationDelete, duration)].join(), { content: `"${ZERO_WIDTH_SPACE}" / "${altString}"` }];
+                  keyframesArray.push(pauseKeyframe);
+                }
               });
-              return Object.fromEntries(keyframes);
-            }
+            });
 
             // Define keyframes separately and add them to the root
             const keyframes = {
               [`@keyframes tw-typed-typing-${hash}`]: {
-                ...getTypingKeyframeStep(),
+                ...Object.fromEntries(keyframesArray),
               },
             };
             if (isTwV4) {
