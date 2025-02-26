@@ -39,8 +39,15 @@
       }
     }
   },
+  "workspaces": [
+    "demos/tailwind3",
+    "demos/tailwind4"
+  ],
   "scripts": {
-    "dev": "vite build --watch & vite serve .",
+    "dev:lib": "vite build --watch",
+    "dev:tw:3": "npm run dev --workspace=demos/tailwind3 -- --open",
+    "dev:tw:4": "npm run dev --workspace=demos/tailwind4 -- --open",
+    "dev": "concurrently -c auto npm:dev:*",
     "build": "vite build",
     "lint": "eslint .",
     "publint": "publint .",
@@ -53,18 +60,16 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@stylistic/eslint-plugin": "^4.0.1",
-    "@tailwindcss/vite": "^4.0.8",
+    "@stylistic/eslint-plugin": "^4.1.0",
     "@types/node": "^22.13.5",
+    "concurrently": "^9.1.2",
     "eslint": "^9.21.0",
     "globals": "^16.0.0",
-    "keep-a-changelog": "^2.6.0",
-    "npm-run-all2": "^7.0.2",
+    "keep-a-changelog": "^2.6.1",
     "publint": "^0.3.6",
-    "tailwindcss": "^4.0.8",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.1",
-    "vite": "^6.1.1",
+    "typescript-eslint": "^8.25.0",
+    "vite": "^6.2.0",
     "vite-plugin-dts": "^4.5.0"
   }
 }
