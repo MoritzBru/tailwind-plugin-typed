@@ -1,4 +1,3 @@
-import type {} from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { arraySum, simpleHash, flattenColorPalette } from './utils/utils';
 
@@ -28,6 +27,7 @@ export default plugin.withOptions<Options>(
   (options) =>
     ({ addComponents, matchComponents, matchUtilities, theme }) => {
       const optionsWithDefaults = Object.assign(defaultOptions, options);
+      const isTwV4 = theme('zIndex')?.__BARE_VALUE__ !== undefined;
 
       matchComponents(
         {
@@ -76,7 +76,9 @@ export default plugin.withOptions<Options>(
                 ...getTypingKeyframeStep(),
               },
             };
-            addComponents(keyframes);
+            if (isTwV4) {
+              addComponents(keyframes);
+            }
 
             return {
               '--tw-typed-typing-duration': `${duration}s`,
@@ -88,6 +90,7 @@ export default plugin.withOptions<Options>(
                 willChange: 'content',
                 animation: `tw-typed-typing-${hash} var(--tw-typed-typing-duration) linear var(--tw-typed-typing-delay) infinite`,
               },
+              ...(isTwV4 ? {} : keyframes),
             };
           },
         },
