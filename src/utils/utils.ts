@@ -28,3 +28,13 @@ export function flattenColorPalette(colors: Colors): Record<string, string> {
         },
       ]));
 }
+
+export function getPercentage(value: number, total: number, fractionDigits = 3): string {
+  if (value === 0) {
+    return '0%';
+  }
+  if (value >= total) {
+    return '100%';
+  }
+  return `${(value / total * 100).toFixed(fractionDigits)}%`;
+}
