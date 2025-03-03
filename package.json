@@ -56,7 +56,7 @@
     "version": "npm run changelog && git add CHANGELOG.md"
   },
   "peerDependencies": {
-    "tailwindcss": "^3.0.0 || ^v4.0.0"
+    "tailwindcss": "^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
