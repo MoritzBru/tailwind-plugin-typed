@@ -3,6 +3,7 @@
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/moritzbru/tailwind-plugin-typed/npm-publish.yml?style=flat-square&logo=github&label=pipeline)](https://github.com/MoritzBru/tailwind-plugin-typed/actions/workflows/npm-publish.yml)
 [![GitHub Tag](https://img.shields.io/github/v/tag/moritzbru/tailwind-plugin-typed?style=flat-square&logo=github)](https://github.com/MoritzBru/tailwind-plugin-typed/releases)
 [![NPM Version](https://img.shields.io/npm/v/tailwind-plugin-typed?style=flat-square&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
+[![NPM Downloads](https://img.shields.io/npm/dm/tailwind-plugin-typed?style=flat-square&logo=npm)](https://www.npmjs.com/package/tailwind-plugin-typed)
 [![Tailwind Play](https://img.shields.io/badge/tailwind_play-v3_demo-%2338bdf8?style=flat-square&logo=tailwindcss)](https://play.tailwindcss.com/PiCmGMfkag)
 [![Tailwind Play](https://img.shields.io/badge/tailwind_play-v4_demo-%2338bdf8?style=flat-square&logo=tailwindcss)](https://play.tailwindcss.com/8DsYJjZUKJ)
 
