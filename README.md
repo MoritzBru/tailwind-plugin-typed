@@ -83,13 +83,20 @@ module.exports = {
 ```css
 @import "tailwindcss";
 @plugin "tailwind-plugin-typed" {
-  delimiter: ';',
-  typeLetterDuration: 0.1,
-  pauseAfterWordDuration: 2,
-  deleteLetterDuration: 0.05,
-  pauseAfterDeletionDuration: 1,
+  /* prettier-ignore */
+  delimiter: ';';
+  /* prettier-ignore */
+  typeLetterDuration: 0.1;
+  /* prettier-ignore */
+  pauseAfterWordDuration: 2;
+  /* prettier-ignore */
+  deleteLetterDuration: 0.05;
+  /* prettier-ignore */
+  pauseAfterDeletionDuration: 1;
 }
 ```
+
+NOTE: We set `/* prettier-ignore */` to avoid Prettier changing the casing in the configuration keys.
 
 
 ## 💻 Usage
